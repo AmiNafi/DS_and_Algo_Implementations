@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define  info pair < long long, pair < long long, long long > >
+#define  edge_info pair < long long, pair < long long, long long > >
+#define node_info pair < long long, long long >
 const long long oo = 1e18;
-vector < info > all;
+vector < edge_info > all;
 long long n, m;
 long long dis[1002];
 vector < pair < long long, long long > > adj[1002];
@@ -14,7 +15,7 @@ void init () {
 void dijkstra (long long s) {
 	init();
 	dis[s] = 0;
-	priority_queue < pair < long long, long long > > pq;
+	priority_queue < node_info, vector < node_info >, greater < node_info >   > pq;
 	pq.push(make_pair(0, s));
 	while (pq.size()) {
 		pair < long long, long long > pu = pq.top();
