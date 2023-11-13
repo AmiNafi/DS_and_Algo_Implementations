@@ -21,23 +21,25 @@ void init () {
 int bfs (int s) {
 	int curflow = 0;
 	for (int i = 0; i <= des; i++) vis[i] = 0;
-	queue < int > q;
-	q.push(0);
+	queue < pair < int, int > > q;
+	q.push(make_pair(0, oo));
 	vis[s] = 0;
-	int mnflow = oo;
+	// int mnflow = oo;
 	while (q.size()) {
-		int u = q.front();
+		pair < int, int >  pu = q.front();
+		int u = pu.first;
+		if (u == des) return pu.second;
 		q.pop();
 		for (int v : adj[u]) {
 			if (!vis[v] && cap[u][v] != 0) {
 				parent[v] = u;
 				vis[v] = 1;
-				mnflow = min(mnflow, cap[u][v]);
-				q.push(v);
+				int minflow = min(pu.second, cap[u][v]);
+				q.push(make_pair(v, minflow));
 			}
 		}
 	}
-	return mnflow;
+	return oo;
 }
 long long edmonds(int s) {
 	long long nflow = 0, tflow = 0;
