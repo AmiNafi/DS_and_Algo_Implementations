@@ -34,7 +34,7 @@ int find (int u) {
 	if (u == parent[u]) return u;
 	return parent[u] = find(parent[u]);
 }
-int joint (pair < int, int > ed) {
+int join (pair < int, int > ed) {
 	int pu = find(ed.first);
 	int pv = find(ed.second);
 	if (pu == pv) return 0;
@@ -50,7 +50,7 @@ void kruskal () {
 	for (int i = 0; i < n; i++) parent[i] = i;
 	sort(edges.begin(), edges.end());
 	for (info cur : edges) {
-		if(joint(cur.second)) {
+		if(join(cur.second)) {
 			ans += cur.first;
 			kruskaledges.push_back(cur.second);
 		}
